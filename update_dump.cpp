@@ -15,7 +15,8 @@ void UpdateDump<is_bid>::update(int64_t price, uint64_t quantity) {
 }
 
 template <bool is_bid>
-bool UpdateDump<is_bid>::pop(int64_t &price, uint64_t &quantity) {
+__always_inline bool UpdateDump<is_bid>::pop(int64_t &price,
+                                             uint64_t &quantity) {
   while (not ordered_prices.empty()) {
     const uint64_t top_price{ordered_prices.top()};
     if (latest_quantities[top_price] == 0) {
